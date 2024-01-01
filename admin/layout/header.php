@@ -42,7 +42,7 @@
     <link rel="stylesheet" type="text/css" href="../vendor/app-assets/css/plugins/charts/chart-apex.css">
     <link rel="stylesheet" type="text/css" href="../vendor/app-assets/css/plugins/extensions/ext-component-toastr.css">
     <!-- END: Page CSS-->
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="../vendor/assets/css/style.css">
     <link href="layout/style.css" rel="stylesheet" type="text/css" />

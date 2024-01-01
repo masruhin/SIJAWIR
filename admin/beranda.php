@@ -40,7 +40,6 @@ $email=$_SESSION["email"];
       </div>
       <div class="content-body">
         <!-- Dashboard Ecommerce Starts -->
-        <p>admin</p>
         <section id="dashboard-ecommerce">
           <div class="row match-height">
             <!-- Medal Card -->

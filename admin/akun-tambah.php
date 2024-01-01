@@ -69,7 +69,7 @@ if (isset($_POST['upload'])) {
         <div class="col-md-8 col-8">
           <div class="card">
             <div class="card-header">
-              <h4 class="card-title">Form Akun Pengguna</h4>
+              <h4 class="card-title">Form Tambah Akun</h4>
             </div>
             <div class="card-body">
               <form class="form form-vertical" action="" method="POST">
