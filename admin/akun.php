@@ -1,5 +1,18 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+
 <?php
 session_start();
+$host="localhost";
+$user="root";
+$password="";
+$db="sijawir";
+
+$kon = mysqli_connect($host,$user,$password,$db);
+if (!$kon){
+	  die("Koneksi gagal:".mysqli_connect_error());
+}
 
 if (!isset($_SESSION["username"])) {
 	echo "Anda harus login dulu <br><a href='../index.php'>Klik disini</a>";
@@ -17,6 +30,39 @@ $id_user=$_SESSION["id_user"];
 $username=$_SESSION["username"];
 $nama=$_SESSION["nama"];
 $email=$_SESSION["email"];
+
+
+if (isset($_POST['edit'])) {
+  if (!isset($_POST['id_user'])) {
+    die("Parameter is missing!");  
+  }
+  
+  $id = intval($_POST['id_user']);
+  $user = $_POST['username'];
+  $nama = $_POST['nama'];
+  $email = $_POST['email'];
+  $level = $_POST['level'];
+  $password = md5($_POST['password']);
+  $edit = "UPDATE users SET username='$user',
+                                nama='$nama',
+                                email='$email',
+                                level='$level',
+                                password='$password' 
+                          WHERE id_user='$id' ";
+  var_dump($edit);
+  die();
+  if (mysqli_query($kon,$edit)) {
+  echo "<script type='text/javascript'>
+        alert('Berhasil Ubah data.'); 
+        document.location = 'akun.php'; 
+      </script>";
+  }else{
+    echo "<script type='text/javascript'>
+    alert('Gagal Ubah data.'); 
+    document.location = 'akun.php'; 
+  </script>";
+  }
+}
 
 ?>
 
@@ -137,15 +183,13 @@ $email=$_SESSION["email"];
                         </div>
                         <div class="modal-body">
                           <form method="POST" action="" enctype="multipart/form-data">
-                            <!-- <form class="form form-horizontal" action="galeri_act.php" method="POST"> -->
                             <?php
                               $id = $hasil['id_user']; 
-                              // $query_edit = mysqli_query($kon, "SELECT * FROM lapker_unit_lpm WHERE id='$id'");
                               $query_edit = mysqli_query($kon, "SELECT username,nama,email,level,password
                                                                 FROM users WHERE id_user='$id' ");
                               while ($row = mysqli_fetch_array($query_edit)) {  
                               ?>
-                            <input type="hidden" name="id" value="<?= $row['id']?>">
+                            <input type="hidden" name="id_user" id="id_user" value="<?= $row['id_user']?>">
 
                             <div class="form-group row">
                               <label for="colFormLabel" class="col-sm-3 col-form-label">
@@ -164,7 +208,7 @@ $email=$_SESSION["email"];
                                   style="background-color: rgb(255 205 21 / 83%); height:25px; color: #020202 !important;">Nama</span>
                               </label>
                               <div class="col-sm-9">
-                                <input type="text" class="form-control" id="colFormLabel" name="Nama"
+                                <input type="text" class="form-control" id="colFormLabel" name="nama"
                                   placeholder="Masukan Nama" value="<?php echo $row['nama'];?>">
                               </div>
                             </div>
@@ -208,13 +252,13 @@ $email=$_SESSION["email"];
                               </label>
                               <div class="col-sm-9">
                                 <input type="text" class="form-control" id="colFormLabel" name="password"
-                                  placeholder="Masukan email" value="*****">
+                                  placeholder="Masukan Password" value="*****">
                               </div>
                             </div>
 
                             <div class="row">
                               <div class="col-sm-12 offset-sm-12 modal-footer">
-                                <button type="submit" class="btn btn-info mr-1 btn-sm" name="ubah">Simpan</button>
+                                <button type="submit" class="btn btn-info mr-1 btn-sm" name="edit">Simpan</button>
                                 <button type="cancel" class="btn btn-outline-danger btn-sm">Batal</button>
                               </div>
                             </div>
