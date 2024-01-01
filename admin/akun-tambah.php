@@ -1,3 +1,7 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+
 <?php include 'layout/header.php';?>
 <?php include '../koneksi.php';?>
 <!-- BEGIN: Body-->
@@ -36,14 +40,34 @@ if (isset($_POST['upload'])) {
                                         '$level',
                                         '$password')");
   
+  echo "<input type='hidden'/>";
   if ($tambah) {
-    echo "<script>alert('Anda Berhasil Menambah Data');
-          document.location='akun.php';
-        </script>";
+    echo "<script type='text/javascript'>
+                  Swal.fire({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'Data Berhasil Ditambah!',
+                    timer: 3000,
+                    showCancelButton: false,
+                    showConfirmButton: false
+                  })
+                  .then(function() {
+                    window.location.href = 'akun.php';
+                  });
+                </script>";
   }else{
-		echo "<script>alert('Anda Gagal  Menambah Data');
-          document.location='akun.php';
-        </script>";
+		echo "<script type='text/javascript'>
+            Swal.fire({
+              type: 'error',
+              icon: 'error',
+              title: 'Oops...',
+              text: 'Data Tidak berhasil disimpan!',
+            })
+            .then(function() {
+              window.location.href = 'akun-tambah.php';
+            });
+            
+    </script>";
 	}
 }
 ?>

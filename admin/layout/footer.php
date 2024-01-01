@@ -38,6 +38,10 @@ $(window).on('load', function() {
     });
   }
 })
+$(document).ready(function() {
+    $('.js-example-basic-single').select2();
+    $('b[role="presentation"]').hide();
+});
 </script>
 <script>
 $(function() {
