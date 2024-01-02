@@ -19,7 +19,7 @@ $nama=$_SESSION["nama"];
 $email=$_SESSION["email"];
 
 ?>
-
+<link rel="stylesheet" type="text/css" href="../vendor/app-assets/vendors/css/file-uploaders/dropzone.min.css">
 <?php include 'layout/header.php';?>
 <!-- BEGIN: Body-->
 
@@ -37,149 +37,148 @@ $email=$_SESSION["email"];
     <div class="content-overlay"></div>
     <div class="header-navbar-shadow"></div>
     <div class="content-wrapper container-xxl p-0">
-      <div class="content-header row">
-      </div>
-      <div class="content-body">
-        <!-- Dashboard Ecommerce Starts -->
-        <section id="dashboard-ecommerce">
-          <div class="row match-height">
-            <!-- Medal Card -->
-            <div class="col-xl-3 col-md-6 col-12">
-              <div class="card card-congratulation-medal">
-                <div class="card-body">
-                  <h3>Universitas</h3>
-                  <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
-                  </h5>
-                  <button type="button" class="btn btn-primary">Lihat</button>
-                  <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
-                      alt="Medal Pic" /> -->
-                </div>
-              </div>
+      <div class="row match-height">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header border-bottom">
+              <h4 class="card-title">Form Input Kerjasama</h4>
             </div>
-            <!--/ Medal Card -->
-
-            <!-- Medal Card -->
-            <div class="col-xl-3 col-md-6 col-12">
-              <div class="card card-congratulation-medal">
-                <div class="card-body">
-                  <h3>FIKES</h3>
-                  <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
-                  </h5>
-                  <button type="button" class="btn btn-primary">Lihat</button>
-                  <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
-                      alt="Medal Pic" /> -->
+            <div class="card-body">
+              <form action="kerjasama_proses.php" method="post" enctype="multipart/form-data">
+                <div class="row">
+                  <div class="col-lg-4">
+                    <div class="card">
+                      <div class="card-header">
+                        <div class="accordion list-group-item list-group-item-action active" type="button"
+                          data-bs-toggle="collapse" data-bs-target="#accordionTwo" aria-expanded="true"
+                          aria-controls="accordionTwo"><span>Tanggal Dokumen</span>
+                        </div>
+                        <div class="card-body list-group-item" id="accordionTwo">
+                          <div class="row">
+                            <!-- <input type="date" id="negara_ket" class="form-control" name="negara_ket" required /> -->
+                            <div class="col-12">
+                              <div class="mb-1">
+                                <p class="form-p" for="tanggal_awal">Pilih Tanggal Dokumen</p>
+                                <div class="input-group  ">
+                                  <span class="input-group-text"><i data-feather="calendar"></i></span>
+                                  <input type="date" id="tanggal_awal" class="form-control" name="tanggal_awal"
+                                    required />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-8">
+                    <div class="col-md-12 col-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-12">
+                              <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                  <label for="fname-icon">Fakultas</label>
+                                </div>
+                                <div class="col-sm-9">
+                                  <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i data-feather="user"></i></span>
+                                    </div>
+                                    <input type="text" id="fname-icon" class="form-control" name="fname-icon"
+                                      placeholder="Produ" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                  <label for="email-icon">Prodi</label>
+                                </div>
+                                <div class="col-sm-9">
+                                  <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i data-feather="mail"></i></span>
+                                    </div>
+                                    <input type="email" id="email-icon" class="form-control" name="email-id-icon"
+                                      placeholder="Email" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                  <label for="contact-icon">Jenis Dokumen</label>
+                                </div>
+                                <div class="col-sm-9">
+                                  <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i data-feather="smartphone"></i></span>
+                                    </div>
+                                    <div class="col-10">
+                                      <select class="select2 form-control form-control-md" name="id_jenis_dok">
+                                        <option value="" selected="selected">-- Pilih Dokumen Kerjasama --</option>
+                                        <?php
+                                      $no = 1;
+                                      $query =
+                                          'SELECT * FROM jenis_dok ORDER BY id_jenis_dok';
+                                      $hasil = mysqli_query($kon, $query);
+                                      while ($row = mysqli_fetch_array($hasil)) { ?>
+                                        <option value="<?php echo $row[
+                                          'id_jenis_dok'
+                                      ]; ?>">
+                                          <?php echo $row['id_jenis_dok'] .
+                                            ' | ' .
+                                            $row['jenis_dok']; ?></option>
+                                        <?php }
+                                      ?>
+                                      </select>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                  <label for="pass-icon">Dokumen</label>
+                                </div>
+                                <div class="col-sm-9">
+                                  <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i data-feather="lock"></i></span>
+                                    </div>
+                                    <input type="file" id="pass-icon" class="form-control" name="contact-icon"
+                                      placeholder="Password" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-sm-9 offset-sm-3">
+                              <div class="form-group">
+                                <div class="custom-control custom-checkbox">
+                                  <input type="checkbox" class="custom-control-input" id="customCheck2" />
+                                  <label class="custom-control-label" for="customCheck2">Remember me</label>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 offset-sm-12 modal-footer">
+                    <button type="submit" class="btn btn-info mr-1 btn-sm" name="upload">Simpan</button>
+                    <button type="reset" class="btn btn-outline-danger btn-sm">Reset</button>
+                  </div>
                 </div>
-              </div>
+              </form>
             </div>
-            <!--/ Medal Card -->
-
-            <!-- Medal Card -->
-            <div class="col-xl-3 col-md-6 col-12">
-              <div class="card card-congratulation-medal">
-                <div class="card-body">
-                  <h3>FEB</h3>
-                  <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
-                  </h5>
-                  <button type="button" class="btn btn-primary">Lihat</button>
-                  <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
-                      alt="Medal Pic" /> -->
-                </div>
-              </div>
-            </div>
-            <!--/ Medal Card -->
-
-            <!-- Medal Card -->
-            <div class="col-xl-3 col-md-6 col-12">
-              <div class="card card-congratulation-medal">
-                <div class="card-body">
-                  <h3>FIKOM</h3>
-                  <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
-                  </h5>
-                  <button type="button" class="btn btn-primary">Lihat</button>
-                  <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
-                      alt="Medal Pic" /> -->
-                </div>
-              </div>
-            </div>
-            <!--/ Medal Card -->
           </div>
-        </section>
-        <!-- Dashboard Ecommerce ends -->
-
-        <!-- Dashboard Ecommerce Starts -->
-        <section id="dashboard-ecommerce">
-          <div class="row match-height">
-            <!-- Medal Card -->
-            <div class="col-xl-3 col-md-6 col-12">
-              <div class="card card-congratulation-medal">
-                <div class="card-body">
-                  <h3>LPM</h3>
-                  <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
-                  </h5>
-                  <button type="button" class="btn btn-primary">Lihat</button>
-                  <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
-                      alt="Medal Pic" /> -->
-                </div>
-              </div>
-            </div>
-            <!--/ Medal Card -->
-
-            <!-- Medal Card -->
-            <div class="col-xl-3 col-md-6 col-12">
-              <div class="card card-congratulation-medal">
-                <div class="card-body">
-                  <h3>LP2M</h3>
-                  <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
-                  </h5>
-                  <button type="button" class="btn btn-primary">Lihat</button>
-                  <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
-                      alt="Medal Pic" /> -->
-                </div>
-              </div>
-            </div>
-            <!--/ Medal Card -->
-
-            <!-- Medal Card -->
-            <div class="col-xl-3 col-md-6 col-12">
-              <div class="card card-congratulation-medal">
-                <div class="card-body">
-                  <h3>BAU</h3>
-                  <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
-                  </h5>
-                  <button type="button" class="btn btn-primary">Lihat</button>
-                  <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
-                      alt="Medal Pic" /> -->
-                </div>
-              </div>
-            </div>
-            <!--/ Medal Card -->
-
-            <!-- Medal Card -->
-            <div class="col-xl-3 col-md-6 col-12">
-              <div class="card card-congratulation-medal">
-                <div class="card-body">
-                  <h3>BAAK</h3>
-                  <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
-                  </h5>
-                  <button type="button" class="btn btn-primary">Lihat</button>
-                  <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
-                      alt="Medal Pic" /> -->
-                </div>
-              </div>
-            </div>
-            <!--/ Medal Card -->
-          </div>
-        </section>
-        <!-- Dashboard Ecommerce ends -->
-
+        </div>
       </div>
     </div>
   </div>
@@ -188,3 +187,4 @@ $email=$_SESSION["email"];
   <div class="sidenav-overlay"></div>
   <div class="drag-target"></div>
   <?php include 'layout/footer.php'?>
+  <script src="../vendor/app-assets/js/scripts/forms/form-file-uploader.js"></script>
