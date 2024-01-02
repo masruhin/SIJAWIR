@@ -25,7 +25,7 @@
             <div class="col-xl-3 col-md-6 col-12">
               <div class="card card-congratulation-medal">
                 <div class="card-body">
-                  <h3>UNIVE</h3>
+                  <h3>Universitas</h3>
                   <h5 class="mb-75 mt-2 pt-50">
                     <a href="javascript:void(0);">Total Dokumen</a>
                   </h5>
