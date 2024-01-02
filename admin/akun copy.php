@@ -145,46 +145,46 @@ $email=$_SESSION["email"];
                               <input type="hidden" name="id_user" id="id_user" value="<?= $row['id_user']?>">
 
                               <div class="form-group row">
-                                <label for="v" class="col-sm-3 col-form-label">
+                                <label for="colFormLabel" class="col-sm-3 col-form-label">
                                   <span class="badge badge-pill badge-light-success mr-1 lg"
                                     style="background-color: rgb(255 205 21 / 83%); height:25px; color: #020202 !important;">Username</span>
                                 </label>
                                 <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="v" name="username"
+                                  <input type="text" class="form-control" id="colFormLabel" name="username"
                                     placeholder="Masukan username" value="<?php echo $row['username'];?>">
                                 </div>
                               </div>
 
                               <div class="form-group row">
-                                <label for="a" class="col-sm-3 col-form-label">
+                                <label for="colFormLabel" class="col-sm-3 col-form-label">
                                   <span class="badge badge-pill badge-light-success mr-1 lg"
                                     style="background-color: rgb(255 205 21 / 83%); height:25px; color: #020202 !important;">Nama</span>
                                 </label>
                                 <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="a" name="nama" placeholder="Masukan Nama"
-                                    value="<?php echo $row['nama'];?>">
+                                  <input type="text" class="form-control" id="colFormLabel" name="nama"
+                                    placeholder="Masukan Nama" value="<?php echo $row['nama'];?>">
                                 </div>
                               </div>
 
                               <div class="form-group row">
-                                <label for="b" class="col-sm-3 col-form-label">
+                                <label for="colFormLabel" class="col-sm-3 col-form-label">
                                   <span class="badge badge-pill badge-light-success mr-1 lg"
                                     style="background-color: rgb(255 205 21 / 83%); height:25px; color: #020202 !important;">E-mail</span>
                                 </label>
                                 <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="b" name="email"
+                                  <input type="text" class="form-control" id="colFormLabel" name="email"
                                     placeholder="Masukan email" value="<?php echo $row['email'];?>">
                                 </div>
                               </div>
 
                               <div class="form-group row">
-                                <label for="s" class="col-sm-3 col-form-label">
+                                <label for="colFormLabel" class="col-sm-3 col-form-label">
                                   <span class="badge badge-pill badge-light-success mr-1 lg"
                                     style="background-color: rgb(255 205 21 / 83%); height:25px; color: #020202 !important;">Level
                                     Pengguna</span>
                                 </label>
                                 <div class="col-sm-9">
-                                  <select name="level" id="s" class="js-example-basic-single form-select form-control"
+                                  <select name="level" class="js-example-basic-single form-select form-control"
                                     required>
                                     <option value="1">1 | Admin</option>
                                     <option value="2">2 | Rektor</option>
@@ -200,12 +200,12 @@ $email=$_SESSION["email"];
                               </div>
 
                               <div class="form-group row">
-                                <label for="c" class="col-sm-3 col-form-label">
+                                <label for="colFormLabel" class="col-sm-3 col-form-label">
                                   <span class="badge badge-pill badge-light-success mr-1 lg"
                                     style="background-color: rgb(255 205 21 / 83%); height:25px; color: #020202 !important;">Password</span>
                                 </label>
                                 <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="c" name="password"
+                                  <input type="text" class="form-control" id="colFormLabel" name="password"
                                     placeholder="Masukan Password" value="*****">
                                 </div>
                               </div>
@@ -278,9 +278,9 @@ $email=$_SESSION["email"];
   <div class="sidenav-overlay"></div>
   <div class="drag-target"></div>
   <?php include 'layout/footer.php'?>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
 
   <?php
 session_start();

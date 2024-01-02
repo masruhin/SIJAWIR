@@ -70,6 +70,12 @@
            <span data-i18n="Documentation"><strong>Data Akun</strong></span>
          </a>
        </li>
+       <li>
+         <a class="d-flex align-items-center" href="../includes/logout.php">
+           <i data-feather='log-out'></i>
+           <span data-i18n="Documentation"><strong>Keluar</strong></span>
+         </a>
+       </li>
      </ul>
    </div>
  </div>

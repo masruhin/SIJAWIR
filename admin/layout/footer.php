@@ -10,7 +10,7 @@
 
 
 <!-- BEGIN: Vendor JS-->
-<script src="../vendor/app-assets/vendors/js/vendors.min.js"></script>
+<script src="../vendor/app-assets/vendors.min.js"></script>
 <!-- BEGIN Vendor JS-->
 
 <!-- BEGIN: Page Vendor JS-->
@@ -27,6 +27,9 @@
 <script src="../vendor/app-assets/js/core/app-menu.js"></script>
 <script src="../vendor/app-assets/js/core/app.js"></script>
 <!-- END: Theme JS-->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
 
 
 <script>
@@ -39,8 +42,8 @@ $(window).on('load', function() {
   }
 })
 $(document).ready(function() {
-    $('.js-example-basic-single').select2();
-    $('b[role="presentation"]').hide();
+  $('.js-example-basic-single').select2();
+  $('b[role="presentation"]').hide();
 });
 </script>
 <script>

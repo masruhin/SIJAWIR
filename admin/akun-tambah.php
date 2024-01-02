@@ -100,25 +100,25 @@ if (isset($_POST['upload'])) {
                 <div class="row">
                   <div class="col-12">
                     <div class="form-group">
-                      <label >Username</label>
+                      <label>Username</label>
                       <div class="input-group input-group-merge">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i data-feather="user"></i></span>
                         </div>
                         <input type="text" id="username" class="form-control" name="username"
-                          placeholder="Masukan Username untuk login " required/>
+                          placeholder="Masukan Username untuk login " required />
                       </div>
                     </div>
                   </div>
                   <div class="col-12">
                     <div class="form-group">
-                      <label >Nama</label>
+                      <label>Nama</label>
                       <div class="input-group input-group-merge">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i data-feather="tag"></i></span>
                         </div>
                         <input type="text" id="nama" class="form-control" name="nama"
-                          placeholder="Masukan Nama Pengguna" required/>
+                          placeholder="Masukan Nama Pengguna" required />
                       </div>
                     </div>
                   </div>
@@ -136,30 +136,30 @@ if (isset($_POST['upload'])) {
                   </div>
                   <div class="col-12">
                     <div class="form-group">
-                      <label >Level User</label>
+                      <label>Level User</label>
                       <div class="input-group input-group-merge">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i data-feather="chevrons-down"></i></span>
                         </div>
                         <div class="col-10">
-                        <select name="level" class="js-example-basic-single form-select form-control" required>
-                          <option value="1">1 | Admin</option>
-                          <option value="2">2 | Rektor</option>
-                          <option value="3">3 | Wakil Rektor</option>
-                          <option value="4">4 | Dekan</option>
-                          <option value="5">5 | KAPRODI</option>
-                          <option value="6">6 | LPM</option>
-                          <option value="7">7 | BAU</option>
-                          <option value="8">8 | BAAK</option>
-                          <option value="9">9 | LP2M</option>
-                        </select>
+                          <select name="level" class="js-example-basic-single form-select form-control" required>
+                            <option value="1">1 | Admin</option>
+                            <option value="2">2 | Rektor</option>
+                            <option value="3">3 | Wakil Rektor</option>
+                            <option value="4">4 | Dekan</option>
+                            <option value="5">5 | KAPRODI</option>
+                            <option value="6">6 | LPM</option>
+                            <option value="7">7 | BAU</option>
+                            <option value="8">8 | BAAK</option>
+                            <option value="9">9 | LP2M</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
                   </div>
-                  </div>
                   <div class="col-12">
                     <div class="form-group">
-                      <label >Password</label>
+                      <label>Password</label>
                       <div class="input-group input-group-merge">
                         <div class="input-group-prepend">
                           <span class="input-group-text"><i data-feather="lock"></i></span>
