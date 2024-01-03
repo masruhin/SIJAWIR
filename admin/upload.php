@@ -187,4 +187,3 @@ $email=$_SESSION["email"];
   <div class="sidenav-overlay"></div>
   <div class="drag-target"></div>
   <?php include 'layout/footer.php'?>
-  <script src="../vendor/app-assets/js/scripts/forms/form-file-uploader.js"></script>

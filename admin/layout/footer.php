@@ -21,7 +21,6 @@
 <script src="../vendor/app-assets/vendors/js/tables/datatable/datatables.buttons.min.js"></script>
 <script src="../vendor/app-assets/vendors/js/tables/datatable/buttons.bootstrap4.min.js"></script>
 <script src="../vendor/app-assets/vendors/js/forms/validation/jquery.validate.min.js"></script>
-<script src="../vendor/app-assets/js/scripts/forms/form-file-uploader.js"></script>
 <!-- END: Page Vendor JS-->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <!-- BEGIN: Theme JS-->

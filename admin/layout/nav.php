@@ -16,10 +16,7 @@
           aria-expanded="false">
           <div class="user-nav d-sm-flex d-none"><span
               class="user-name font-weight-bolder"><strong><?php echo $username=$_SESSION["nama"];?></strong></span><span
-              class="user-status"><?php if($_SESSION["level"]==1) {
-                     echo "Administrator";
-                  }
-                 ?></span></div><span class="avatar"><img class="round"
+              class="user-status"></span></div><span class="avatar"><img class="round"
               src="../vendor/app-assets/images/portrait/small/avatar-s-11.jpg" alt="avatar" height="40" width="40"><span
               class="avatar-status-online"></span></span>
         </a>
