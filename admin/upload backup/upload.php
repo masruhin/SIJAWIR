@@ -52,7 +52,7 @@ $email=$_SESSION["email"];
                         <div class="card-header">
                           <div class="accordion list-group-item list-group-item-action active" type="button"
                             data-bs-toggle="collapse" data-bs-target="#accordionTwo" aria-expanded="true"
-                            aria-controls="accordionTwo"><span style="font-size: medium;">Tanggal Dokumen</span>
+                            aria-controls="accordionTwo"><span>Tanggal Dokumen</span>
                           </div>
                           <div class="card-body list-group-item" id="accordionTwo">
                             <div class="row">
@@ -80,7 +80,7 @@ $email=$_SESSION["email"];
                               <div class="col-12">
                                 <div class="form-group row">
                                   <div class="col-sm-3 col-form-label">
-                                    <span style="font-size: medium;">Fakultas</span>
+                                    <label for="id_fakultas">Fakultas</label>
                                   </div>
                                   <div class="col-sm-9">
                                     <select onchange="show_kabupaten()" class="form-control" name="id_fakultas"
@@ -103,7 +103,7 @@ $email=$_SESSION["email"];
                               <div class="col-12">
                                 <div class="form-group row">
                                   <div class="col-sm-3 col-form-label">
-                                    <span style="font-size: medium;">Prodi</span>
+                                    <label for="id_prodi">Prodi</label>
                                   </div>
                                   <div class="col-sm-9" id="list_prodi">
                                     <select class="form-control" name="id_prodi" id="id_prodi">
@@ -112,10 +112,42 @@ $email=$_SESSION["email"];
                                   </div>
                                 </div>
                               </div>
+                              <!-- <div class="col-12">
+                              <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                  <label for="fname-icon">Fakultas</label>
+                                </div>
+                                <div class="col-sm-9">
+                                  <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i data-feather="user"></i></span>
+                                    </div>
+                                    <input type="text" id="fname-icon" class="form-control" name="fname-icon"
+                                      placeholder="Produ" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group row">
+                                <div class="col-sm-3 col-form-label">
+                                  <label for="email-icon">Prodi</label>
+                                </div>
+                                <div class="col-sm-9">
+                                  <div class="input-group input-group-merge">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i data-feather="mail"></i></span>
+                                    </div>
+                                    <input type="email" id="email-icon" class="form-control" name="email-id-icon"
+                                      placeholder="Email" />
+                                  </div>
+                                </div>
+                              </div>
+                            </div> -->
                               <div class="col-12">
                                 <div class="form-group row">
                                   <div class="col-sm-3 col-form-label">
-                                    <span style="font-size: medium;">Jenis Dokumen</span>
+                                    <label for="id_jenis_dokumen">Jenis Dokumen</label>
                                   </div>
                                   <div class="col-sm-9">
                                     <div class="input-group input-group-merge">
@@ -123,21 +155,21 @@ $email=$_SESSION["email"];
                                         <span class="input-group-text"><i data-feather="smartphone"></i></span>
                                       </div>
                                       <div class="col-10">
-                                        <select class="select2 form-control form-control-md" id="id_jenis"
-                                          name="id_jenis">
+                                        <select class="select2 form-control form-control-md" id="id_jenis_dokumen"
+                                          name="id_jenis_dok">
                                           <option value="" selected="selected">-- Pilih Dokumen Kerjasama --</option>
                                           <?php
                                       $no = 1;
                                       $query =
-                                          'SELECT * FROM dok_jenis ORDER BY id_jenis';
+                                          'SELECT * FROM jenis_dok ORDER BY id_jenis_dok';
                                       $hasil = mysqli_query($kon, $query);
                                       while ($row = mysqli_fetch_array($hasil)) { ?>
                                           <option value="<?php echo $row[
-                                          'id_jenis'
+                                          'id_jenis_dok'
                                       ]; ?>">
-                                            <?php echo $row['id_jenis'] .
+                                            <?php echo $row['id_jenis_dok'] .
                                             ' | ' .
-                                            $row['nm_jenis']; ?></option>
+                                            $row['jenis_dok']; ?></option>
                                           <?php }
                                       ?>
                                         </select>
@@ -149,7 +181,7 @@ $email=$_SESSION["email"];
                               <div class="col-12">
                                 <div class="form-group row">
                                   <div class="col-sm-3 col-form-label">
-                                    <span style="font-size: medium;">Pilih Dokumen</span>
+                                    <label for="pass-icon">Dokumen</label>
                                   </div>
                                   <div class="col-sm-9">
                                     <div class="input-group input-group-merge">
@@ -159,6 +191,14 @@ $email=$_SESSION["email"];
                                       <input type="file" id="pass-icon" class="form-control" name="contact-icon"
                                         placeholder="Password" />
                                     </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-sm-9 offset-sm-3">
+                                <div class="form-group">
+                                  <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2" />
+                                    <label class="custom-control-label" for="customCheck2">Remember me</label>
                                   </div>
                                 </div>
                               </div>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 31, 2023 at 07:10 PM
+-- Generation Time: Jan 04, 2024 at 05:11 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 5.6.39
 
@@ -45,7 +45,7 @@ CREATE TABLE `dokumen` (
 --
 
 INSERT INTO `dokumen` (`id_dok`, `kd_dok`, `nm_dok`, `id_jenis`, `id_univ`, `id_fakultas`, `id_prodi`, `thn_dok`, `ket_dok`) VALUES
-(1, 'kd01', 'ok', 1, 1, 1, 1, '2023-12-28', 'ok');
+(2, 'KD001', 'a', 1, 1, 1, 1, '2024-01-31', '');
 
 -- --------------------------------------------------------
 
@@ -54,10 +54,20 @@ INSERT INTO `dokumen` (`id_dok`, `kd_dok`, `nm_dok`, `id_jenis`, `id_univ`, `id_
 --
 
 CREATE TABLE `dok_jenis` (
-  `id_jenis` int(100) NOT NULL,
+  `id_jenis` int(11) NOT NULL,
   `kd_jenis` varchar(255) NOT NULL,
   `nm_jenis` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `dok_jenis`
+--
+
+INSERT INTO `dok_jenis` (`id_jenis`, `kd_jenis`, `nm_jenis`) VALUES
+(1, 'D001', 'Pedoman'),
+(2, 'D002', 'Panduan'),
+(3, 'D003', 'Laporan'),
+(4, 'D004', 'Dokumen Lainya');
 
 -- --------------------------------------------------------
 
@@ -66,10 +76,19 @@ CREATE TABLE `dok_jenis` (
 --
 
 CREATE TABLE `fakultas` (
-  `id_fakultas` int(100) NOT NULL,
+  `id_fakultas` int(11) NOT NULL,
   `nm_fakultas` varchar(255) NOT NULL,
   `keterangan_fakultas` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `fakultas`
+--
+
+INSERT INTO `fakultas` (`id_fakultas`, `nm_fakultas`, `keterangan_fakultas`) VALUES
+(1, 'FIKES', ''),
+(2, 'FIKOM', ''),
+(3, 'FEB', '');
 
 -- --------------------------------------------------------
 
@@ -78,10 +97,25 @@ CREATE TABLE `fakultas` (
 --
 
 CREATE TABLE `prodi` (
-  `id_prodi` int(100) NOT NULL,
-  `id_fakultas` int(100) NOT NULL,
+  `id_prodi` int(11) NOT NULL,
+  `id_fakultas` int(11) NOT NULL,
   `nm_prodi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `prodi`
+--
+
+INSERT INTO `prodi` (`id_prodi`, `id_fakultas`, `nm_prodi`) VALUES
+(1, 1, 'Ilmu Keperawatan (S1)'),
+(2, 1, 'Farmasi (S1)'),
+(3, 1, 'Kebidanan (D3)'),
+(4, 1, 'Keperawatan (D3)'),
+(5, 1, 'Keselamatan dan Kesehatan Kerja (D4)'),
+(6, 1, 'Profesi Ners'),
+(7, 2, 'Informatika (S1)'),
+(8, 3, 'Bisnis Digital (S1)'),
+(9, 3, 'Kewirausahaan (S1)');
 
 -- --------------------------------------------------------
 
@@ -116,11 +150,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `username`, `nama`, `email`, `level`, `password`) VALUES
 (1, 'admin', 'Setiawan Dimas', 'dimas95@gmail.com', 1, '827ccb0eea8a706c4c34a16891f84e7b'),
-(2, 'roland09', 'Roland Pugel', 'roland09@gmail.com', 2, '827ccb0eea8a706c4c34a16891f84e7b'),
-(3, 'candra34', 'Candra Sidauruk', 'candra34@gmail.com', 3, '827ccb0eea8a706c4c34a16891f84e7b'),
-(4, 'adam', 'adam', 'admin@gmail.com', 1, '1d7c2923c1684726dc23d2901c4d8157'),
-(5, 'ruhin', 'ruhin', 'admin@gmail.com', 1, 'a1a2b31d553de2856ea582c2e071c1d7'),
-(6, 'ari', 'ari', 'admin@gmail.com', 1, 'fc292bd7df071858c2d0f955545673c1');
+(2, 'adea', 'Roland Pugel', 'roland09@gmail.com', 1, 'fddd21b9d7ce17da93c30fa5a653a1df');
 
 --
 -- Indexes for dumped tables
@@ -152,8 +182,7 @@ ALTER TABLE `fakultas`
 -- Indexes for table `prodi`
 --
 ALTER TABLE `prodi`
-  ADD PRIMARY KEY (`id_prodi`),
-  ADD UNIQUE KEY `id_fakultas` (`id_fakultas`);
+  ADD PRIMARY KEY (`id_prodi`);
 
 --
 -- Indexes for table `univ`
@@ -175,48 +204,35 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dokumen`
 --
 ALTER TABLE `dokumen`
-  MODIFY `id_dok` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_dok` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `dok_jenis`
 --
 ALTER TABLE `dok_jenis`
-  MODIFY `id_jenis` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jenis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `fakultas`
 --
 ALTER TABLE `fakultas`
-  MODIFY `id_fakultas` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_fakultas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `prodi`
+--
+ALTER TABLE `prodi`
+  MODIFY `id_prodi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `dok_jenis`
---
-ALTER TABLE `dok_jenis`
-  ADD CONSTRAINT `dok_jenis_ibfk_1` FOREIGN KEY (`id_jenis`) REFERENCES `dokumen` (`id_jenis`);
-
---
--- Constraints for table `fakultas`
---
-ALTER TABLE `fakultas`
-  ADD CONSTRAINT `fakultas_ibfk_1` FOREIGN KEY (`id_fakultas`) REFERENCES `dokumen` (`id_fakultas`);
-
---
--- Constraints for table `prodi`
---
-ALTER TABLE `prodi`
-  ADD CONSTRAINT `prodi_ibfk_1` FOREIGN KEY (`id_prodi`) REFERENCES `dokumen` (`id_prodi`),
-  ADD CONSTRAINT `prodi_ibfk_2` FOREIGN KEY (`id_fakultas`) REFERENCES `fakultas` (`id_fakultas`);
 
 --
 -- Constraints for table `univ`

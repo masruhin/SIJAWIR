@@ -145,24 +145,24 @@ $email=$_SESSION["email"];
                               <input type="hidden" name="id_user" id="id_user" value="<?= $row['id_user']?>">
 
                               <div class="form-group row">
-                                <label for="v" class="col-sm-3 col-form-label">
+                                <label for="username" class="col-sm-3 col-form-label">
                                   <span class="badge badge-pill badge-light-success mr-1 lg"
                                     style="background-color: rgb(255 205 21 / 83%); height:25px; color: #020202 !important;">Username</span>
                                 </label>
                                 <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="v" name="username"
+                                  <input type="text" class="form-control" id="username" name="username"
                                     placeholder="Masukan username" value="<?php echo $row['username'];?>">
                                 </div>
                               </div>
 
                               <div class="form-group row">
-                                <label for="a" class="col-sm-3 col-form-label">
+                                <label for="nama" class="col-sm-3 col-form-label">
                                   <span class="badge badge-pill badge-light-success mr-1 lg"
                                     style="background-color: rgb(255 205 21 / 83%); height:25px; color: #020202 !important;">Nama</span>
                                 </label>
                                 <div class="col-sm-9">
-                                  <input type="text" class="form-control" id="a" name="nama" placeholder="Masukan Nama"
-                                    value="<?php echo $row['nama'];?>">
+                                  <input type="text" class="form-control" id="nama" name="nama"
+                                    placeholder="Masukan Nama" value="<?php echo $row['nama'];?>">
                                 </div>
                               </div>
 
