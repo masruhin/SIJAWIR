@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2024 at 08:13 AM
+-- Generation Time: Jan 04, 2024 at 05:01 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 5.6.39
 
@@ -31,20 +31,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `dokumen` (
   `id_dok` int(100) NOT NULL,
   `kd_dok` varchar(100) DEFAULT NULL,
-  `nm_dok` varchar(255) DEFAULT NULL,
-  `id_jenis` int(100) NOT NULL,
-  `id_fakultas` int(100) DEFAULT NULL,
-  `id_prodi` int(100) DEFAULT NULL,
+  `nm_dok` varchar(255) NOT NULL,
+  `id_jenis` int(25) NOT NULL,
+  `id_univ` varchar(255) DEFAULT NULL,
+  `id_fakultas` int(25) NOT NULL,
+  `id_prodi` int(25) NOT NULL,
   `thn_dok` date NOT NULL,
-  `ket_dok` varchar(500) NOT NULL
+  `ket_dok` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `dokumen`
 --
 
-INSERT INTO `dokumen` (`id_dok`, `kd_dok`, `nm_dok`, `id_jenis`, `id_fakultas`, `id_prodi`, `thn_dok`, `ket_dok`) VALUES
-(9, 'DOK002', NULL, 2, 1, 1, '2024-01-05', 'asad');
+INSERT INTO `dokumen` (`id_dok`, `kd_dok`, `nm_dok`, `id_jenis`, `id_univ`, `id_fakultas`, `id_prodi`, `thn_dok`, `ket_dok`) VALUES
+(34, 'DOK_001', '2024-01-04_ppt informatika kel.2.pptx', 3, '', 1, 1, '2024-01-01', '');
 
 -- --------------------------------------------------------
 
@@ -137,7 +138,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id_user`, `username`, `nama`, `email`, `level`, `password`) VALUES
 (1, 'admin', 'Setiawan Dimas', 'dimas95@gmail.com', 1, '21232f297a57a5a743894a0e4a801fc3'),
-(2, 'adea', 'Roland Pugel', 'roland09@gmail.com', 1, 'b7b6c1a04b80bc734b435e5a74b70c5a');
+(2, 'adea', 'Roland Pugel', 'roland09@gmail.com', 2, 'b7b6c1a04b80bc734b435e5a74b70c5a'),
+(4, 'Rektor', 'Rektor', 'rektor@gmail.com', 2, '1d93047b3cc8c2438ff2d2c6b94541a4');
 
 --
 -- Indexes for dumped tables
@@ -147,12 +149,7 @@ INSERT INTO `users` (`id_user`, `username`, `nama`, `email`, `level`, `password`
 -- Indexes for table `dokumen`
 --
 ALTER TABLE `dokumen`
-  ADD PRIMARY KEY (`id_dok`),
-  ADD UNIQUE KEY `id_jenis` (`id_jenis`),
-  ADD UNIQUE KEY `id_fakultas` (`id_fakultas`),
-  ADD KEY `id_jenis_2` (`id_jenis`),
-  ADD KEY `id_jenis_3` (`id_jenis`,`id_fakultas`,`id_prodi`),
-  ADD KEY `id_prodi` (`id_prodi`) USING BTREE;
+  ADD PRIMARY KEY (`id_dok`);
 
 --
 -- Indexes for table `dok_jenis`
@@ -186,7 +183,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dokumen`
 --
 ALTER TABLE `dokumen`
-  MODIFY `id_dok` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_dok` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `dok_jenis`
@@ -210,7 +207,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

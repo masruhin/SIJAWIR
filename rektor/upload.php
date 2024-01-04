@@ -9,7 +9,7 @@ if (!isset($_SESSION["username"])) {
 
 $level=$_SESSION["level"];
 
-if ($level!=1) {
+if ($level!=2) {
     echo "Anda tidak punya akses pada halaman admin";
     exit;
 }
@@ -235,7 +235,7 @@ if(isset($_POST['delete']))
                               </div>
 
                               <?php
-                              if ($level!=2) {
+                              if ($level==2) {
                                   echo "<div class='col-12'>
                                 <div class='mb-1'>
                                   <p class='form-p' for='id_univ'>Dokumen Rektor</p>
