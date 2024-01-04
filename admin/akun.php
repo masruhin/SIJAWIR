@@ -245,7 +245,7 @@ $email=$_SESSION["email"];
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                           </div>
                           <div class="modal-body">
-                            <p>Apakah Kamu akan menghapus Nama Situs <?php echo $hasil['username']; ?>?</p>
+                            <p>Apakah Kamu akan menghapus Akun <?php echo $hasil['username']; ?>?</p>
                           </div>
                           <div class="col-sm-12 offset-sm-12 modal-footer">
                             <button type="submit" class="btn btn-danger mr-1 btn-sm" name="delete">Hapus</button>

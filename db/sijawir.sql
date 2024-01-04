@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 04, 2024 at 05:11 AM
+-- Generation Time: Jan 04, 2024 at 08:13 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 5.6.39
 
@@ -30,10 +30,9 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `dokumen` (
   `id_dok` int(100) NOT NULL,
-  `kd_dok` varchar(100) NOT NULL,
-  `nm_dok` varchar(255) NOT NULL,
+  `kd_dok` varchar(100) DEFAULT NULL,
+  `nm_dok` varchar(255) DEFAULT NULL,
   `id_jenis` int(100) NOT NULL,
-  `id_univ` int(100) DEFAULT NULL,
   `id_fakultas` int(100) DEFAULT NULL,
   `id_prodi` int(100) DEFAULT NULL,
   `thn_dok` date NOT NULL,
@@ -44,8 +43,8 @@ CREATE TABLE `dokumen` (
 -- Dumping data for table `dokumen`
 --
 
-INSERT INTO `dokumen` (`id_dok`, `kd_dok`, `nm_dok`, `id_jenis`, `id_univ`, `id_fakultas`, `id_prodi`, `thn_dok`, `ket_dok`) VALUES
-(2, 'KD001', 'a', 1, 1, 1, 1, '2024-01-31', '');
+INSERT INTO `dokumen` (`id_dok`, `kd_dok`, `nm_dok`, `id_jenis`, `id_fakultas`, `id_prodi`, `thn_dok`, `ket_dok`) VALUES
+(9, 'DOK002', NULL, 2, 1, 1, '2024-01-05', 'asad');
 
 -- --------------------------------------------------------
 
@@ -120,18 +119,6 @@ INSERT INTO `prodi` (`id_prodi`, `id_fakultas`, `nm_prodi`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `univ`
---
-
-CREATE TABLE `univ` (
-  `id_univ` int(100) NOT NULL,
-  `nm_univ` varchar(100) NOT NULL,
-  `ket_univ` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `users`
 --
 
@@ -149,8 +136,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id_user`, `username`, `nama`, `email`, `level`, `password`) VALUES
-(1, 'admin', 'Setiawan Dimas', 'dimas95@gmail.com', 1, '827ccb0eea8a706c4c34a16891f84e7b'),
-(2, 'adea', 'Roland Pugel', 'roland09@gmail.com', 1, 'fddd21b9d7ce17da93c30fa5a653a1df');
+(1, 'admin', 'Setiawan Dimas', 'dimas95@gmail.com', 1, '21232f297a57a5a743894a0e4a801fc3'),
+(2, 'adea', 'Roland Pugel', 'roland09@gmail.com', 1, 'b7b6c1a04b80bc734b435e5a74b70c5a');
 
 --
 -- Indexes for dumped tables
@@ -162,9 +149,10 @@ INSERT INTO `users` (`id_user`, `username`, `nama`, `email`, `level`, `password`
 ALTER TABLE `dokumen`
   ADD PRIMARY KEY (`id_dok`),
   ADD UNIQUE KEY `id_jenis` (`id_jenis`),
-  ADD UNIQUE KEY `id_univ` (`id_univ`),
   ADD UNIQUE KEY `id_fakultas` (`id_fakultas`),
-  ADD UNIQUE KEY `id_prodi` (`id_prodi`);
+  ADD KEY `id_jenis_2` (`id_jenis`),
+  ADD KEY `id_jenis_3` (`id_jenis`,`id_fakultas`,`id_prodi`),
+  ADD KEY `id_prodi` (`id_prodi`) USING BTREE;
 
 --
 -- Indexes for table `dok_jenis`
@@ -185,12 +173,6 @@ ALTER TABLE `prodi`
   ADD PRIMARY KEY (`id_prodi`);
 
 --
--- Indexes for table `univ`
---
-ALTER TABLE `univ`
-  ADD UNIQUE KEY `id_univ` (`id_univ`);
-
---
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -204,7 +186,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `dokumen`
 --
 ALTER TABLE `dokumen`
-  MODIFY `id_dok` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_dok` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `dok_jenis`
@@ -228,17 +210,7 @@ ALTER TABLE `prodi`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `univ`
---
-ALTER TABLE `univ`
-  ADD CONSTRAINT `univ_ibfk_1` FOREIGN KEY (`id_univ`) REFERENCES `dokumen` (`id_univ`);
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
