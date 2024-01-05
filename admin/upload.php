@@ -1,3 +1,6 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
 <?php
 include '../koneksi.php';
 session_start();
@@ -47,17 +50,31 @@ if (isset($_POST['upload'])) {
     VALUES('$thn_dok','$kd_dok','$id_fakultas','$id_prodi','$id_jenis','$ket_dok')");
     // var_dump($insert);
     // die();
-    
+  echo "<input type='hidden'/>";
     if($insert){
       echo "<script type='text/javascript'>
-      alert('Berhasil Tambah data.'); 
-      document.location = 'beranda.php'; 
-    </script>";
+              Swal.fire({
+                position: 'top-end',
+                type: 'success',
+                title: 'Data Berhasil Ditambah!',
+                timer: 3000,
+                showCancelButton: false,
+                showConfirmButton: false
+              })
+              .then(function() {
+                window.location.href = 'beranda.php';
+              });
+            </script>";
     }else{
       echo "<script type='text/javascript'>
-      alert('Gagal Insert data.'); 
-      document.location = 'upload.php'; 
-    </script>";
+      Swal.fire({
+        type: 'error',
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Data Tidak berhasil disimpan!',
+      });
+      
+</script>";
     }
   }else {
     if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
@@ -79,30 +96,57 @@ if (isset($_POST['upload'])) {
                                                     '$nama')");
             // var_dump($query);
             // die();
+  echo "<input type='hidden'/>";
             if($query){
               echo "<script type='text/javascript'>
-              alert('Berhasil Tambah data.'); 
-              document.location = 'beranda.php'; 
-            </script>";
+                  Swal.fire({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'Data Berhasil Ditambah!',
+                    timer: 3000,
+                    showCancelButton: false,
+                    showConfirmButton: false
+                  })
+                  .then(function() {
+                    window.location.href = 'beranda.php';
+                  });
+                </script>";
             }
             else{
               echo "<script type='text/javascript'>
-              alert('Gagal Insert data.'); 
-              document.location = 'upload.php'; 
-            </script>";
+              Swal.fire({
+                type: 'error',
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Data Tidak berhasil disimpan!',
+              });   
+         </script>";
             }
         }
         else{
           echo "<script type='text/javascript'>
-          alert('File Terlalu Besar'); 
-          document.location = 'upload.php'; 
-        </script>";
+              Swal.fire({
+                type: 'error',
+                icon: 'error',
+                title: 'Oops...',
+                text: 'File Terlalu Besar!',
+              });   
+         </script>";
         }
     }
     else{
       echo "<script type='text/javascript'>
-      alert('Berhasil'); 
-      document.location = 'kerjasama.php'; 
+      Swal.fire({
+        position: 'top-end',
+        type: 'success',
+        title: 'Data Berhasil Ditambah!',
+        timer: 3000,
+        showCancelButton: false,
+        showConfirmButton: false
+      })
+      .then(function() {
+        window.location.href = 'beranda.php';
+      });
     </script>";
     }
   }
@@ -263,7 +307,8 @@ if(isset($_POST['delete']))
                                     <span style="font-size: medium;">Fakultas</span>
                                   </div>
                                   <div class="col-sm-9">
-                                    <select onchange="show_kabupaten()" class="form-control" name="id_fakultas" id="id_fakultas">
+                                    <select onchange="show_kabupaten()" class="form-control" name="id_fakultas"
+                                      id="id_fakultas">
                                       <option value="">--------Pilih Fakultas--------</option>
                                       <?php
                                       include '../koneksi.php';

@@ -57,12 +57,12 @@
            <span data-i18n="Documentation"><strong>Upload Dokumen</strong></span>
          </a>
        </li>
-       <li <?php if (isset($_GET["m"])){echo 'class="nav-item active"';}?>>
+       <!-- <li <?php if (isset($_GET["m"])){echo 'class="nav-item active"';}?>>
          <a class="d-flex align-items-center" href="hapus.php?m">
            <i data-feather="trash"></i>
            <span data-i18n="Documentation"><strong>Hapus Dokumen</strong></span>
          </a>
-       </li>
+       </li> -->
        <li <?php if (isset($_GET["bmd"])){echo 'class="nav-item active"';}?>>
          <a class="d-flex align-items-center" href="akun.php?bmd">
            <i data-feather="users"></i>
