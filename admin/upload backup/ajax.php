@@ -60,25 +60,12 @@ if ($_GET['aksi']=='hapus') {
 <?php 
 if ($_GET['aksi']=='provinsi') {
 $id_fakultas = $_GET["id_fakultas"];
-echo '<select class="form-control" name="id_prodi" id="id_prodi>
-                     <option value="">--------Pilih Prodi--------</option>';
+echo "<select class='form-control' name='id_prodi' id='id_prodi'>
+                     <option value='' >--------Pilih Prodi--------</option>";
 $datakabupaten = mysqli_query($kon, "SELECT * FROM prodi WHERE id_fakultas='$id_fakultas'");
 while ($kabupaten = mysqli_fetch_array($datakabupaten)) {
 
    echo "<option value='".$kabupaten['id_prodi']."'>".$kabupaten['nm_prodi']."</option>";
-}
-}
-?>
-
-<?php
-if ($_GET['aksi']=='kabupaten') {
-$id_kabupaten = $_GET["id_kabupaten"];
-echo '<select class="form-control" name="id_kecamatan" id="id_kecamatan">
-                     <option value="">--------Pilih Kecamatan--------</option>';
-$datakecamatan = mysqli_query($kon, "SELECT * FROM tb_kecamatan WHERE id_kabupaten='$id_kabupaten'");
-while ($kecamatan = mysqli_fetch_array($datakecamatan)) {
-
-   echo "<option value='".$kecamatan['id_kecamatan']."'>".$kecamatan['nama_kecamatan']."</option>";
 }
 }
 ?>

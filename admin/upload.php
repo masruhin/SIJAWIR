@@ -29,6 +29,11 @@ if (isset($_POST['upload'])) {
   
   
   $date = date('Y-m-d');
+  if (isset($_POST['id_univ'])) {
+    $id_univ = 1;
+  } else {
+    $id_univ = 0;
+  }
   $thn_dok = $_POST['thn_dok'];
   $kd_dok     = $_POST['kd_dok'];
   $id_fakultas     = $_POST['id_fakultas'];
@@ -46,8 +51,8 @@ if (isset($_POST['upload'])) {
   $file_tmp    = $_FILES['file']['tmp_name']; 
   
   if ($nama2 == '') {
-    $insert    = mysqli_query($kon, "INSERT INTO dokumen (thn_dok,kd_dok,id_fakultas,id_prodi,id_jenis,ket_dok) 
-    VALUES('$thn_dok','$kd_dok','$id_fakultas','$id_prodi','$id_jenis','$ket_dok')");
+    $insert    = mysqli_query($kon, "INSERT INTO dokumen (id_univ,thn_dok,kd_dok,id_fakultas,id_prodi,id_jenis,ket_dok) 
+    VALUES('$id_univ','$thn_dok','$kd_dok','$id_fakultas','$id_prodi','$id_jenis','$ket_dok')");
     // var_dump($insert);
     // die();
   echo "<input type='hidden'/>";
@@ -80,14 +85,16 @@ if (isset($_POST['upload'])) {
     if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
         if($ukuran < 304407000){ 
             move_uploaded_file($file_tmp, '../file/' . $nama);
-            $query    = mysqli_query($kon, "INSERT INTO dokumen (thn_dok,
-                                                                    kd_dok,
-                                                                    id_fakultas,
-                                                                    id_prodi,
-                                                                    id_jenis,
-                                                                    ket_dok,
-                                                                    nm_dok) 
-                                            VALUES('$thn_dok',
+            $query    = mysqli_query($kon, "INSERT INTO dokumen (id_univ,
+                                                                  thn_dok,
+                                                                  kd_dok,
+                                                                  id_fakultas,
+                                                                  id_prodi,
+                                                                  id_jenis,
+                                                                  ket_dok,
+                                                                  nm_dok) 
+                                            VALUES('$id_univ',
+                                                    '$thn_dok',
                                                     '$kd_dok',
                                                     '$id_fakultas',
                                                     '$id_prodi',
@@ -232,16 +239,27 @@ if(isset($_POST['delete']))
               <div class="card-body">
                 <?php
                 include '../koneksi.php';
-                  $q = "SELECT max(kd_dok) as maxKode FROM dokumen";
-                  $hsl = mysqli_query($kon,$q);
-                  $d = mysqli_fetch_array($hsl);
-                  $kd_dok = $d['maxKode'];
+                //koding menentukan Nomor Unik Registrasi
 
-                  $noUrut = (int) substr($kd_dok, 3, 3);
-                  $noUrut++;
+                $kodingbuton=mysqli_query($kon, "SELECT * FROM dokumen");
 
-                  $char = "DOK_";
-                  $kd_dok = $char . sprintf("%03s", $noUrut);
+                $num=mysqli_num_rows($kodingbuton);
+
+                $jmlh=$num+1;
+
+                $waktu=date('dmy');
+
+                $nounik="DOK-".$waktu.-$jmlh;
+                  // $q = "SELECT max(kd_dok) as maxKode FROM dokumen";
+                  // $hsl = mysqli_query($kon,$q);
+                  // $d = mysqli_fetch_array($hsl);
+                  // $kd_dok = $d['maxKode'];
+
+                  // $noUrut = (int) substr($kd_dok, 3, 3);
+                  // $noUrut++;
+
+                  // $char = "DOK_";
+                  // $kd_dok = $char . sprintf("%03s", $noUrut);
                 ?>
                 <form action="" method="post" enctype="multipart/form-data">
                   <div class="row">
@@ -273,7 +291,7 @@ if(isset($_POST['delete']))
                                   <div class="input-group  ">
                                     <span class="input-group-text"><i data-feather="calendar"></i></span>
                                     <input type="text" id="kd_dok" class="form-control" name="kd_dok" readonly
-                                      value="<?php echo $kd_dok;?>" />
+                                      value="<?php echo  $nounik;?>" />
                                   </div>
                                 </div>
                               </div>
@@ -285,7 +303,7 @@ if(isset($_POST['delete']))
                                   <p class='form-p' for='id_univ'>Dokumen Rektor</p>
                                   <div class='input-group  '>
                                     <span class='input-group-text'><i data-feather='calendar'></i></span>
-                                    <input type='text' id='id_univ' class='form-control' name='id_univ' readonly value='Universitas' />
+                                    <input type='text' id='id_univ' class='form-control' name='id_univ' readonly value='1' />
                                   </div>
                                 </div>
                               </div>";

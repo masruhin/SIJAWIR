@@ -51,11 +51,20 @@ $(window).on('load', function() {
   }
 })
 $(document).ready(function() {
+
+  $('#id_fakultas').select2({
+    placeholder: 'Pilih Fakultas',
+    language: "id"
+  });
+  $('#id_prodi').select2({
+    placeholder: 'Pilih Prodi',
+    language: "id"
+  });
+  $('#id_jenis').select2({
+    placeholder: 'Pilih Jenis Dokumen',
+    language: "id"
+  });
   $('.js-example-basic-single').select2();
-  $('b[role="presentation"]').hide();
-});
-$(document).ready(function() {
-  $('#id_fakultas').select2();
   $('b[role="presentation"]').hide();
 });
 </script>

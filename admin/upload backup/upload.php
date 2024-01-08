@@ -1,4 +1,8 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
 <?php
+include '../koneksi.php';
 session_start();
 
 if (!isset($_SESSION["username"])) {
@@ -18,6 +22,187 @@ $username=$_SESSION["username"];
 $nama=$_SESSION["nama"];
 $email=$_SESSION["email"];
 
+
+
+if (isset($_POST['upload'])) {
+
+  
+  
+  $date = date('Y-m-d');
+  $thn_dok = $_POST['thn_dok'];
+  $kd_dok     = $_POST['kd_dok'];
+  $id_fakultas     = $_POST['id_fakultas'];
+  $id_prodi     = $_POST['id_prodi'];
+  $id_jenis   = $_POST['id_jenis'];
+  $ket_dok = $_POST['ket_dok'];
+
+  
+  $ekstensi_diperbolehkan    = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip', 'png', 'jpg', 'mp4', 'avi');
+  $nama = date("Y-m-d").'_'.basename($_FILES['file']['name']);
+  $nama2    = $_FILES['file']['name'];
+  $x        = explode('.', $nama);
+  $ekstensi    = strtolower(end($x));
+  $ukuran        = $_FILES['file']['size'];
+  $file_tmp    = $_FILES['file']['tmp_name']; 
+  
+  if ($nama2 == '') {
+    $insert    = mysqli_query($kon, "INSERT INTO dokumen (thn_dok,kd_dok,id_fakultas,id_prodi,id_jenis,ket_dok) 
+    VALUES('$thn_dok','$kd_dok','$id_fakultas','$id_prodi','$id_jenis','$ket_dok')");
+    // var_dump($insert);
+    // die();
+  echo "<input type='hidden'/>";
+    if($insert){
+      echo "<script type='text/javascript'>
+              Swal.fire({
+                position: 'top-end',
+                type: 'success',
+                title: 'Data Berhasil Ditambah!',
+                timer: 3000,
+                showCancelButton: false,
+                showConfirmButton: false
+              })
+              .then(function() {
+                window.location.href = 'beranda.php';
+              });
+            </script>";
+    }else{
+      echo "<script type='text/javascript'>
+      Swal.fire({
+        type: 'error',
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Data Tidak berhasil disimpan!',
+      });
+      
+</script>";
+    }
+  }else {
+    if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
+        if($ukuran < 304407000){ 
+            move_uploaded_file($file_tmp, '../file/' . $nama);
+            $query    = mysqli_query($kon, "INSERT INTO dokumen (thn_dok,
+                                                                    kd_dok,
+                                                                    id_fakultas,
+                                                                    id_prodi,
+                                                                    id_jenis,
+                                                                    ket_dok,
+                                                                    nm_dok) 
+                                            VALUES('$thn_dok',
+                                                    '$kd_dok',
+                                                    '$id_fakultas',
+                                                    '$id_prodi',
+                                                    '$id_jenis',
+                                                    '$ket_dok',
+                                                    '$nama')");
+            // var_dump($query);
+            // die();
+  echo "<input type='hidden'/>";
+            if($query){
+              echo "<script type='text/javascript'>
+                  Swal.fire({
+                    position: 'top-end',
+                    type: 'success',
+                    title: 'Data Berhasil Ditambah!',
+                    timer: 3000,
+                    showCancelButton: false,
+                    showConfirmButton: false
+                  })
+                  .then(function() {
+                    window.location.href = 'beranda.php';
+                  });
+                </script>";
+            }
+            else{
+              echo "<script type='text/javascript'>
+              Swal.fire({
+                type: 'error',
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Data Tidak berhasil disimpan!',
+              });   
+         </script>";
+            }
+        }
+        else{
+          echo "<script type='text/javascript'>
+              Swal.fire({
+                type: 'error',
+                icon: 'error',
+                title: 'Oops...',
+                text: 'File Terlalu Besar!',
+              });   
+         </script>";
+        }
+    }
+    else{
+      echo "<script type='text/javascript'>
+      Swal.fire({
+        position: 'top-end',
+        type: 'success',
+        title: 'Data Berhasil Ditambah!',
+        timer: 3000,
+        showCancelButton: false,
+        showConfirmButton: false
+      })
+      .then(function() {
+        window.location.href = 'beranda.php';
+      });
+    </script>";
+    }
+  }
+}
+if (isset($_POST['ubah'])) {
+  $id = isset($_GET['id_kerjasama']) ? $_GET['id_kerjasama'] : null;
+  $id = $_POST['id_kerjasama'];
+  $negara_kat = $_POST['negara_kat'];
+  $negara = $_POST['id_negara'];
+  $status = $_POST['status_kerjasama'];
+  $tawal = $_POST['tanggal_awal'];
+  $takhir = $_POST['tanggal_akhir'];
+  $fak = $_POST['id_fak'];
+  $id_dok = $_POST['id_jenis_dok'];
+  $judul = $_POST['judul_kerjasama'];
+  $deskripsi = $_POST['deskripsi_kerjasama'];
+  $ref = $_POST['no_ref_kerjasama'];
+  $unit = $_POST['id_unit'];
+
+  $ekstensi_diperbolehkan    = array('doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf', 'rar', 'zip', 'png', 'jpg', 'mp4', 'avi');
+  $nama = date("Y-m-d").'_'.basename($_FILES['file']['name']);
+  $x        = explode('.', $nama);
+  $ekstensi    = strtolower(end($x));
+  $ukuran        = $_FILES['file']['size'];
+  $file_tmp    = $_FILES['file']['tmp_name']; 
+  
+  $query = "UPDATE instansi SET instansi_nama='$instansi_nama', situs_nama='$situs_nama' WHERE id_instansi='$id' ";
+    if (mysqli_query($kon,$query)) {
+    # credirect ke page unit
+    echo "<script type='text/javascript'>
+          alert('Berhasil Ubah data.'); 
+          document.location = 'kerjasama.php'; 
+        </script>";
+    }else{
+    echo "ERROR, data gagal diupdate". mysqli_error($kon);
+    }
+}
+if(isset($_POST['delete']))
+{
+  $id = isset($_GET['id_kerjasama']) ? $_GET['id_kerjasama'] : null;
+  $id = $_POST['id_kerjasama'];
+	//delete
+	$sql = "DELETE FROM kerjasama WHERE id_kerjasama = '$id'";
+	if(mysqli_query($kon, $sql))
+	{
+		echo "<script type='text/javascript'>
+			alert('Berhasil Hapus data.'); 
+			document.location = 'kerjasama.php'; 
+		</script>";
+	} 
+	else
+	{
+		echo "ERROR: Could not able to execute $sql. " . mysqli_error($kon);
+	}
+
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,28 +230,67 @@ $email=$_SESSION["email"];
                 <h4 class="card-title">Form Input Kerjasama</h4>
               </div>
               <div class="card-body">
-                <form action="kerjasama_proses.php" method="post" enctype="multipart/form-data">
+                <?php
+                include '../koneksi.php';
+                  $q = "SELECT max(kd_dok) as maxKode FROM dokumen";
+                  $hsl = mysqli_query($kon,$q);
+                  $d = mysqli_fetch_array($hsl);
+                  $kd_dok = $d['maxKode'];
+
+                  $noUrut = (int) substr($kd_dok, 3, 3);
+                  $noUrut++;
+
+                  $char = "DOK_";
+                  $kd_dok = $char . sprintf("%03s", $noUrut);
+                ?>
+                <form action="" method="post" enctype="multipart/form-data">
                   <div class="row">
                     <div class="col-lg-4">
                       <div class="card">
                         <div class="card-header">
                           <div class="accordion list-group-item list-group-item-action active" type="button"
                             data-bs-toggle="collapse" data-bs-target="#accordionTwo" aria-expanded="true"
-                            aria-controls="accordionTwo"><span>Tanggal Dokumen</span>
+                            aria-controls="accordionTwo"><span style="font-size: medium;"> Dokumen</span>
                           </div>
                           <div class="card-body list-group-item" id="accordionTwo">
                             <div class="row">
-                              <!-- <input type="date" id="negara_ket" class="form-control" name="negara_ket" required /> -->
                               <div class="col-12">
                                 <div class="mb-1">
-                                  <p class="form-p" for="tanggal_awal">Pilih Tanggal Dokumen</p>
+                                  <p class="form-p" for="thn_dok">Pilih Tanggal Dokumen</p>
                                   <div class="input-group  ">
                                     <span class="input-group-text"><i data-feather="calendar"></i></span>
-                                    <input type="date" id="tanggal_awal" class="form-control" name="tanggal_awal"
-                                      required />
+                                    <input type="date" id="thn_dok" class="form-control" name="thn_dok" required />
                                   </div>
                                 </div>
                               </div>
+                            </div>
+                          </div>
+                          <div class="card-body list-group-item" id="accordionTwo">
+                            <div class="row">
+                              <div class="col-12">
+                                <div class="mb-1">
+                                  <p class="form-p" for="kd_dok">Kode Dokumen</p>
+                                  <div class="input-group  ">
+                                    <span class="input-group-text"><i data-feather="calendar"></i></span>
+                                    <input type="text" id="kd_dok" class="form-control" name="kd_dok" readonly
+                                      value="<?php echo $kd_dok;?>" />
+                                  </div>
+                                </div>
+                              </div>
+
+                              <?php
+                              if ($level!=2) {
+                                  echo "<div class='col-12'>
+                                <div class='mb-1'>
+                                  <p class='form-p' for='id_univ'>Dokumen Rektor</p>
+                                  <div class='input-group  '>
+                                    <span class='input-group-text'><i data-feather='calendar'></i></span>
+                                    <input type='text' id='id_univ' class='form-control' name='id_univ' readonly value='Universitas' />
+                                  </div>
+                                </div>
+                              </div>";
+                            }
+                            ?>
                             </div>
                           </div>
                         </div>
@@ -80,7 +304,7 @@ $email=$_SESSION["email"];
                               <div class="col-12">
                                 <div class="form-group row">
                                   <div class="col-sm-3 col-form-label">
-                                    <label for="id_fakultas">Fakultas</label>
+                                    <span style="font-size: medium;">Fakultas</span>
                                   </div>
                                   <div class="col-sm-9">
                                     <select onchange="show_kabupaten()" class="form-control" name="id_fakultas"
@@ -103,51 +327,19 @@ $email=$_SESSION["email"];
                               <div class="col-12">
                                 <div class="form-group row">
                                   <div class="col-sm-3 col-form-label">
-                                    <label for="id_prodi">Prodi</label>
+                                    <span style="font-size: medium;">Prodi</span>
                                   </div>
                                   <div class="col-sm-9" id="list_prodi">
                                     <select class="form-control" name="id_prodi" id="id_prodi">
-                                      <option value="">--------Pilih Prodi--------</option>
+                                      <!-- <option value="">--------Pilih Prodi--------</option> -->
                                     </select>
                                   </div>
                                 </div>
                               </div>
-                              <!-- <div class="col-12">
-                              <div class="form-group row">
-                                <div class="col-sm-3 col-form-label">
-                                  <label for="fname-icon">Fakultas</label>
-                                </div>
-                                <div class="col-sm-9">
-                                  <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text"><i data-feather="user"></i></span>
-                                    </div>
-                                    <input type="text" id="fname-icon" class="form-control" name="fname-icon"
-                                      placeholder="Produ" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-12">
-                              <div class="form-group row">
-                                <div class="col-sm-3 col-form-label">
-                                  <label for="email-icon">Prodi</label>
-                                </div>
-                                <div class="col-sm-9">
-                                  <div class="input-group input-group-merge">
-                                    <div class="input-group-prepend">
-                                      <span class="input-group-text"><i data-feather="mail"></i></span>
-                                    </div>
-                                    <input type="email" id="email-icon" class="form-control" name="email-id-icon"
-                                      placeholder="Email" />
-                                  </div>
-                                </div>
-                              </div>
-                            </div> -->
                               <div class="col-12">
                                 <div class="form-group row">
                                   <div class="col-sm-3 col-form-label">
-                                    <label for="id_jenis_dokumen">Jenis Dokumen</label>
+                                    <span style="font-size: medium;">Jenis Dokumen</span>
                                   </div>
                                   <div class="col-sm-9">
                                     <div class="input-group input-group-merge">
@@ -155,21 +347,21 @@ $email=$_SESSION["email"];
                                         <span class="input-group-text"><i data-feather="smartphone"></i></span>
                                       </div>
                                       <div class="col-10">
-                                        <select class="select2 form-control form-control-md" id="id_jenis_dokumen"
-                                          name="id_jenis_dok">
+                                        <select class="select2 form-control form-control-md" id="id_jenis"
+                                          name="id_jenis">
                                           <option value="" selected="selected">-- Pilih Dokumen Kerjasama --</option>
                                           <?php
                                       $no = 1;
                                       $query =
-                                          'SELECT * FROM jenis_dok ORDER BY id_jenis_dok';
+                                          'SELECT * FROM dok_jenis ORDER BY id_jenis';
                                       $hasil = mysqli_query($kon, $query);
                                       while ($row = mysqli_fetch_array($hasil)) { ?>
                                           <option value="<?php echo $row[
-                                          'id_jenis_dok'
+                                          'id_jenis'
                                       ]; ?>">
-                                            <?php echo $row['id_jenis_dok'] .
+                                            <?php echo $row['id_jenis'] .
                                             ' | ' .
-                                            $row['jenis_dok']; ?></option>
+                                            $row['nm_jenis']; ?></option>
                                           <?php }
                                       ?>
                                         </select>
@@ -181,24 +373,28 @@ $email=$_SESSION["email"];
                               <div class="col-12">
                                 <div class="form-group row">
                                   <div class="col-sm-3 col-form-label">
-                                    <label for="pass-icon">Dokumen</label>
+                                    <span style="font-size: medium;">Pilih Dokumen</span>
                                   </div>
                                   <div class="col-sm-9">
                                     <div class="input-group input-group-merge">
                                       <div class="input-group-prepend">
                                         <span class="input-group-text"><i data-feather="lock"></i></span>
                                       </div>
-                                      <input type="file" id="pass-icon" class="form-control" name="contact-icon"
-                                        placeholder="Password" />
+                                      <input type="file" name="file" class="form-control" />
                                     </div>
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-sm-9 offset-sm-3">
-                                <div class="form-group">
-                                  <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck2" />
-                                    <label class="custom-control-label" for="customCheck2">Remember me</label>
+                              <div class="col-12">
+                                <div class="form-group row">
+                                  <div class="col-sm-3 col-form-label">
+                                    <span style="font-size: medium;">Keterangan</span>
+                                  </div>
+                                  <div class="col-sm-9">
+                                    <div class="input-group input-group-merge">
+                                      <textarea name="ket_dok" id="ket_dok" class="form-control" rows="4"
+                                        placeholder="Ringkasan singkat terkait cakupan keterangan"></textarea>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
