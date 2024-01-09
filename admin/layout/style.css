@@ -39,7 +39,9 @@
     color: black;
     background-color: #F2F5A9;
   } */
-
+  .ui-datepicker-calendar {
+    display: none;
+    }​
 body {
     margin: auto;
     font-family: -apple-system, BlinkMacSystemFont, sans-serif;

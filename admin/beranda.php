@@ -48,9 +48,9 @@ $email=$_SESSION["email"];
                 <div class="card-body">
                   <h3>Universitas</h3>
                   <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
+                    <a href="#">Total Dokumen</a>
                   </h5>
-                  <button type="button" class="btn btn-primary">Lihat</button>
+                  <a href="dok_univ.php" type="button" class="btn btn-primary">Lihat</a>
                   <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
                       alt="Medal Pic" /> -->
                 </div>

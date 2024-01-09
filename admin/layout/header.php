@@ -24,6 +24,7 @@
       href="../vendor/app-assets/vendors/css/tables/datatable/responsive.bootstrap4.min.css">
     <link rel="stylesheet" type="text/css"
       href="../vendor/app-assets/vendors/css/tables/datatable/buttons.bootstrap4.min.css">
+
     <!-- END: Vendor CSS-->
 
     <!-- BEGIN: Theme CSS-->

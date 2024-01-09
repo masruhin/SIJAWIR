@@ -283,7 +283,6 @@ $email=$_SESSION["email"];
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script> -->
 
   <?php
-session_start();
 $host="localhost";
 $user="root";
 $password="";
