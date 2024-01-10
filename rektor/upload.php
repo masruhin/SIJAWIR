@@ -105,8 +105,8 @@ if (isset($_POST['upload'])) {
                                                     '$id_jenis',
                                                     '$ket_dok',
                                                     '$nama')");
-            // var_dump($query);
-            // die();
+            var_dump($query);
+            die();
   echo "<input type='hidden'/>";
             if($query){
               echo "<script type='text/javascript'>
@@ -309,7 +309,7 @@ if(isset($_POST['delete']))
                         <div class="card">
                           <div class="card-body">
                             <div class="row">
-                              <!-- <div class="col-12">
+                              <div class="col-12">
                                 <div class="form-group row">
                                   <div class="col-sm-3 col-form-label">
                                     <span style="font-size: medium;">Fakultas</span>
@@ -343,7 +343,7 @@ if(isset($_POST['delete']))
                                     </select>
                                   </div>
                                 </div>
-                              </div> -->
+                              </div>
                               <div class="col-12">
                                 <div class="form-group row">
                                   <div class="col-sm-3 col-form-label">

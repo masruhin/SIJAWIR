@@ -56,9 +56,10 @@ $email=$_SESSION["email"];
                         <i data-feather="search"></i>
                       </button>
                     </div>
-                    <input type="date" id="tahun" class="form-control flatpickr-basic" placeholder="YYYY-MM-DD" />
+                    <input type="text" name="tahun" id="tahun" class="form-control flatpickr-basic"
+                      placeholder="YYYY-MM-DD" />
                     <div class="input-group-append">
-                      <button class="btn btn-sm btn-primary" type="button">Cari !</button>
+                      <input class="btn btn-sm btn-primary" type="submit" value="FILTER">Cari !</input>
                     </div>
                   </div>
                 </div>
@@ -86,27 +87,42 @@ $email=$_SESSION["email"];
                   </tr>
                 </thead>
                 <tbody>
+
                   <?php 
-                    include "../koneksi.php";
-                    $no = 1;
-                    $data = mysqli_query($kon, "SELECT a.id_dok,
-                                                      a.id_univ,
-                                                      a.kd_dok,
-                                                      a.nm_dok,
-                                                      a.id_jenis,
-                                                      a.id_fakultas,
-                                                      a.id_prodi,
-                                                      a.thn_dok,
-                                                      a.ket_dok,
-                                                      b.nm_jenis,
-                                                      c.nm_fakultas,
+                  include "../koneksi.php";
+                  $no = 1;
+                  if (isset($_GET['tahun'])) {
+                    $thn = $_GET['tahun'];
+                    $data = mysqli_query($kon, "SELECT a.id_dok, a.id_univ,a.kd_dok,a.nm_dok,a.id_jenis,
+                                                      a.id_prodi,a.thn_dok, a.ket_dok,b.nm_jenis,c.nm_fakultas,
                                                       d.nm_prodi 
                                                     FROM
-                                                      dokumen a
-                                                      LEFT JOIN dok_jenis b ON b.id_jenis = a.id_jenis
-                                                      LEFT JOIN fakultas c ON c.id_fakultas = a.id_fakultas
-                                                      LEFT JOIN prodi d ON d.id_prodi = a.id_prodi
-                                                      WHERE a.id_univ = 1");
+                                                    dokumen a
+                                                    LEFT JOIN dok_jenis b ON b.id_jenis = a.id_jenis
+                                                    LEFT JOIN fakultas c ON c.id_fakultas = a.id_fakultas
+                                                    LEFT JOIN prodi d ON d.id_prodi = a.id_prodi
+                                                    WHERE thn_dok = '$thn' OR a.id_univ = 1");
+                  }else {
+                    $data = mysqli_query($kon, "SELECT a.id_dok,
+                    a.id_univ,
+                    a.kd_dok,
+                    a.nm_dok,
+                    a.id_jenis,
+                    a.id_fakultas,
+                    a.id_prodi,
+                    a.thn_dok,
+                    a.ket_dok,
+                    b.nm_jenis,
+                    c.nm_fakultas,
+                    d.nm_prodi 
+                  FROM
+                    dokumen a
+                    LEFT JOIN dok_jenis b ON b.id_jenis = a.id_jenis
+                    LEFT JOIN fakultas c ON c.id_fakultas = a.id_fakultas
+                    LEFT JOIN prodi d ON d.id_prodi = a.id_prodi
+                    WHERE a.id_univ = 1");
+                  }
+                   
                     if (!$data) {
                       printf("Error: %s\n", mysqli_error($kon));
                       exit();

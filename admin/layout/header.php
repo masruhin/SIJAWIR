@@ -41,6 +41,10 @@
     <link rel="stylesheet" type="text/css" href="../vendor/app-assets/css/pages/dashboard-ecommerce.css">
     <link rel="stylesheet" type="text/css" href="../vendor/app-assets/css/plugins/charts/chart-apex.css">
     <link rel="stylesheet" type="text/css" href="../vendor/app-assets/css/plugins/extensions/ext-component-toastr.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/app-assets/vendors/css/pickers/pickadate/pickadate.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/app-assets/css/plugins/forms/pickers/form-flat-pickr.css">
+    <link rel="stylesheet" type="text/css" href="../vendor/app-assets/css/plugins/forms/pickers/form-pickadate.css">
     <!-- END: Page CSS-->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <!-- BEGIN: Custom CSS-->

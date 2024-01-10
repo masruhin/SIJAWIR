@@ -240,7 +240,6 @@ if(isset($_POST['delete']))
                 <?php
                 include '../koneksi.php';
                 //koding menentukan Nomor Unik Registrasi
-
                 $kodingbuton=mysqli_query($kon, "SELECT * FROM dokumen");
 
                 $num=mysqli_num_rows($kodingbuton);
@@ -250,16 +249,6 @@ if(isset($_POST['delete']))
                 $waktu=date('dmy');
 
                 $nounik="DOK-".$waktu.-$jmlh;
-                  // $q = "SELECT max(kd_dok) as maxKode FROM dokumen";
-                  // $hsl = mysqli_query($kon,$q);
-                  // $d = mysqli_fetch_array($hsl);
-                  // $kd_dok = $d['maxKode'];
-
-                  // $noUrut = (int) substr($kd_dok, 3, 3);
-                  // $noUrut++;
-
-                  // $char = "DOK_";
-                  // $kd_dok = $char . sprintf("%03s", $noUrut);
                 ?>
                 <form action="" method="post" enctype="multipart/form-data">
                   <div class="row">

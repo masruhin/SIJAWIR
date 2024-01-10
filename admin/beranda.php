@@ -31,6 +31,30 @@ $email=$_SESSION["email"];
   <?php include 'layout/nav.php'?>
 
   <?php include 'layout/menu.php'?>
+  <?php
+  include '../koneksi.php';
+  //query univ
+  $q_u = "SELECT * FROM dokumen WHERE id_univ LIKE 1";
+  $result_univ = mysqli_query($kon, $q_u);
+  $hasil_u = $result_univ->num_rows;
+
+  //query fikes
+  $q_f = "SELECT * FROM dokumen WHERE id_fakultas LIKE 1";
+  $result_fikes = mysqli_query($kon, $q_f);
+  $hasil_f = $result_fikes->num_rows;
+
+  //query fikom
+  $q_fikom = "SELECT * FROM dokumen WHERE id_fakultas LIKE 2";
+  $result_fikom = mysqli_query($kon, $q_fikom);
+  $hasil_fikom = $result_fikom->num_rows;
+
+  //query feb
+  $q_feb = "SELECT * FROM dokumen WHERE id_fakultas LIKE 3";
+  $result_feb = mysqli_query($kon, $q_feb);
+  $hasil_feb = $result_feb->num_rows;
+
+  
+  ?>
   <!-- BEGIN: Content-->
   <div class="app-content content ">
     <div class="content-overlay"></div>
@@ -48,7 +72,14 @@ $email=$_SESSION["email"];
                 <div class="card-body">
                   <h3>Universitas</h3>
                   <h5 class="mb-75 mt-2 pt-50">
-                    <a href="#">Total Dokumen</a>
+                    <a href="javascript:void(0);">Total Dokumen
+                      <?php if ($hasil_u) {?>
+                      <span class="badge badge-pill badge-light-dark mr-1 lg"> <?php echo $hasil_u ?></span>
+                      <?php }else{ ?>
+                      <span class="badge badge-pill badge-light-danger mr-1 lg">Tidak ada file!</span>
+                      <?php }
+                    ?>
+                    </a>
                   </h5>
                   <a href="dok_univ.php" type="button" class="btn btn-primary">Lihat</a>
                   <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
@@ -64,23 +95,14 @@ $email=$_SESSION["email"];
                 <div class="card-body">
                   <h3>FIKES</h3>
                   <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
-                  </h5>
-                  <button type="button" class="btn btn-primary">Lihat</button>
-                  <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
-                      alt="Medal Pic" /> -->
-                </div>
-              </div>
-            </div>
-            <!--/ Medal Card -->
-
-            <!-- Medal Card -->
-            <div class="col-xl-3 col-md-6 col-12">
-              <div class="card card-congratulation-medal">
-                <div class="card-body">
-                  <h3>FEB</h3>
-                  <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
+                    <a href="javascript:void(0);">Total Dokumen
+                      <?php if ($hasil_f) {?>
+                      <span class="badge badge-pill badge-light-dark mr-1 lg"> <?php echo $hasil_f ?></span>
+                      <?php }else{ ?>
+                      <span class="badge badge-pill badge-light-danger mr-1 lg">Tidak ada file!</span>
+                      <?php }
+                    ?>
+                    </a>
                   </h5>
                   <button type="button" class="btn btn-primary">Lihat</button>
                   <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
@@ -96,7 +118,37 @@ $email=$_SESSION["email"];
                 <div class="card-body">
                   <h3>FIKOM</h3>
                   <h5 class="mb-75 mt-2 pt-50">
-                    <a href="javascript:void(0);">Total Dokumen</a>
+                    <a href="javascript:void(0);">Total Dokumen
+                      <?php if ($hasil_fikom) {?>
+                      <span class="badge badge-pill badge-light-dark mr-1 lg"> <?php echo $hasil_fikom ?></span>
+                      <?php }else{ ?>
+                      <span class="badge badge-pill badge-light-danger mr-1 lg">Tidak ada file!</span>
+                      <?php }
+                    ?>
+                    </a>
+                  </h5>
+                  <button type="button" class="btn btn-primary">Lihat</button>
+                  <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
+                      alt="Medal Pic" /> -->
+                </div>
+              </div>
+            </div>
+            <!--/ Medal Card -->
+
+            <!-- Medal Card -->
+            <div class="col-xl-3 col-md-6 col-12">
+              <div class="card card-congratulation-medal">
+                <div class="card-body">
+                  <h3>FEB</h3>
+                  <h5 class="mb-75 mt-2 pt-50">
+                    <a href="javascript:void(0);">Total Dokumen
+                      <?php if ($hasil_feb) {?>
+                      <span class="badge badge-pill badge-light-dark mr-1 lg"> <?php echo $hasil_feb ?></span>
+                      <?php }else{ ?>
+                      <span class="badge badge-pill badge-light-danger mr-1 lg">Tidak ada file!</span>
+                      <?php }
+                    ?>
+                    </a>
                   </h5>
                   <button type="button" class="btn btn-primary">Lihat</button>
                   <!-- <img src="vendor/app-assets/images/illustration/badge.svg" class="congratulation-medal"
